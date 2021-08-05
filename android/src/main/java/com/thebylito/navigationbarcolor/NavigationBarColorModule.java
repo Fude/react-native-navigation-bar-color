@@ -84,26 +84,9 @@ public class NavigationBarColorModule extends ReactContextBaseJavaModule {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if (color.equals("transparent") || color.equals("translucent")) {
-                                window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-                                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                                if (color.equals("transparent")) {
-                                    window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-                                } else {
-                                    window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                                }
-                                setNavigationBarTheme(getCurrentActivity(), light);
-                                map.putBoolean("success", true);
-                                promise.resolve(map);
-                                return;
-                            } else {
-                                window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-                                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                            }
                             if (animated) {
                                 Integer colorFrom = window.getNavigationBarColor();
                                 Integer colorTo = Color.parseColor(String.valueOf(color));
-                                //window.setNavigationBarColor(colorTo);
                                 ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
                                 colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                     @Override
